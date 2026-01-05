@@ -22,7 +22,7 @@ jobs:
       diff: ${{ steps.changes.outputs.src }}
     steps:
       - name: Enable egress filtering
-        uses: bullfrogsec/bullfrog@1831f79cce8ad602eef14d2163873f27081ebfb3
+        uses: bullfrogsec/bullfrog@dabf76d162f4dcab6cff8fd80621aefebef86ede
         with:
           egress-policy: audit
       - name: Checkout
@@ -43,7 +43,7 @@ jobs:
     if: ${{ needs.check-diff.outputs.diff == 'true' }}
     steps:
       - name: Enable egress filtering
-        uses: bullfrogsec/bullfrog@1831f79cce8ad602eef14d2163873f27081ebfb3
+        uses: bullfrogsec/bullfrog@dabf76d162f4dcab6cff8fd80621aefebef86ede
         with:
           egress-policy: block
           allowed-domains: |
@@ -82,7 +82,7 @@ jobs:
 
     steps:
       - name: Enable egress filtering
-        uses: bullfrogsec/bullfrog@1831f79cce8ad602eef14d2163873f27081ebfb3
+        uses: bullfrogsec/bullfrog@dabf76d162f4dcab6cff8fd80621aefebef86ede
         with:
           egress-policy: block
           allowed-domains: |
@@ -246,7 +246,7 @@ jobs:
 
     steps:
       - name: Enable egress filtering
-        uses: bullfrogsec/bullfrog@1831f79cce8ad602eef14d2163873f27081ebfb3
+        uses: bullfrogsec/bullfrog@dabf76d162f4dcab6cff8fd80621aefebef86ede
         with:
           egress-policy: block
           allowed-domains: |
@@ -292,7 +292,7 @@ jobs:
 
     steps:
       - name: Enable egress filtering
-        uses: bullfrogsec/bullfrog@1831f79cce8ad602eef14d2163873f27081ebfb3
+        uses: bullfrogsec/bullfrog@dabf76d162f4dcab6cff8fd80621aefebef86ede
         with:
           egress-policy: block
           allowed-domains: |
@@ -339,7 +339,7 @@ jobs:
       minor: ${{ steps.release.outputs.minor }}
     steps:
       - name: Enable egress filtering
-        uses: bullfrogsec/bullfrog@1831f79cce8ad602eef14d2163873f27081ebfb3
+        uses: bullfrogsec/bullfrog@dabf76d162f4dcab6cff8fd80621aefebef86ede
         with:
           egress-policy: block
           allowed-domains: |
@@ -377,7 +377,7 @@ jobs:
 
     steps:
       # This job intentionally skips `actions/checkout` to simulate bullfrog's action as if it were called from another workflow. Refer to https://github.com/bullfrogsec/bullfrog/commit/3a3e5e03112ef726b3079d402415760c9021fa39 for details.
-      - uses: jenseng/dynamic-uses@26a7fa196ecfc98e02d08d65a09d03ab999683ae
+      - uses: jenseng/dynamic-uses@8bc24f0360175e710da532c4d19eafdbed489a06
         with:
           uses: ${{ github.repository }}@${{ needs.pre-release.outputs.tag_name }}
           with: '{"allowed-domains": "www.google.com", "egress-policy": "block", "agent-download-base-url": "https://github.com/${{ github.repository }}/releases/download/"}'
@@ -401,7 +401,7 @@ jobs:
     needs: [pre-release, pre-release-validation]
     steps:
       - name: Enable egress filtering
-        uses: bullfrogsec/bullfrog@1831f79cce8ad602eef14d2163873f27081ebfb3
+        uses: bullfrogsec/bullfrog@dabf76d162f4dcab6cff8fd80621aefebef86ede
         with:
           egress-policy: block
 
